@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма ввода</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .input-group { margin-bottom: 10px; }
+        input { padding: 5px; width: 300px; display: block; }
+        button { margin-top: 10px; margin-right: 5px; padding: 5px 10px; cursor: pointer; }
+        a { display: block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Форма ввода данных</h2>
+    <form method="POST" id="main-form">
+        {% csrf_token %}
+        <div id="inputs-wrapper">
+            <div class="input-group">
+                <input type="text" name="name1" placeholder="Поле 1" required>
+            </div>
+        </div>
+        <button type="button" id="add-field-btn">Добавить поле</button>
+        <button type="submit">Отправить</button>
+    </form>
+    <a href="/results/">Результаты</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let counter = 1;
+            document.getElementById('add-field-btn').addEventListener('click', function() {
+                counter++;
+                let wrapper = document.getElementById('inputs-wrapper');
+                let div = document.createElement('div');
+                div.className = 'input-group';
+                div.innerHTML = '<input type="text" name="name' + counter + '" placeholder="Поле ' + counter + '">';
+                wrapper.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>

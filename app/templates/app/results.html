@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .item { border-bottom: 1px solid #ccc; padding: 10px 0; }
+        pre { background: #eee; padding: 10px; inline-size: max-content; }
+    </style>
+</head>
+<body>
+    <a href="/">← Назад к форме</a>
+    <h2>Сохраненные данные (JSON)</h2>
+    {% if records %}
+        {% for item in records %}
+            <div class="item">
+                <p>Дата создания: {{ item.created_at }}</p>
+                <pre>{{ item.payload }}</pre>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Записей пока нет.</p>
+    {% endif %}
+</body>
+</html>
